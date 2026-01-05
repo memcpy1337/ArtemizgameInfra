@@ -1,4 +1,4 @@
-nameOverride: rabbit
+nameOverride: redis-matchmaking
 replicaCount: 1
 
 image:

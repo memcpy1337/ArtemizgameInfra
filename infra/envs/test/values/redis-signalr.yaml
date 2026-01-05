@@ -1,4 +1,4 @@
-nameOverride: rabbit
+nameOverride: redis-signalr
 replicaCount: 1
 
 image:
