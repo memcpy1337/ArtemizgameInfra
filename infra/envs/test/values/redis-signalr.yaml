@@ -2,27 +2,23 @@ nameOverride: rabbit
 replicaCount: 1
 
 image:
-  repository: rabbitmq
-  tag: management
+  repository: redis
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   ports:
-    - name: amqp
-      port: 5672
-      targetPort: 5672
-      protocol: TCP
-    - name: management
-      port: 15672
-      targetPort: 15672
+    - name: TCP
+      port: 6379
+      targetPort: 6379
       protocol: TCP
 
 ingress:
   enabled: false
 
 envFrom:
-  - secretRef: rabbit-secrets
+  - secretRef: redis-secrets
 
 resources:
   requests:

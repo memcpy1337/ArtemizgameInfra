@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-matchmaking
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/memcpy1337/ArtemizgameInfra.git
+    targetRevision: main
+    path: infra/charts/microservice
+    helm:
+      valueFiles:
+        - ../../envs/test/values/redis-matchmaking.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
