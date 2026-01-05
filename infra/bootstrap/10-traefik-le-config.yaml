@@ -6,9 +6,6 @@ metadata:
 spec:
   valuesContent: |-
     additionalArguments:
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-
       - "--certificatesresolvers.le.acme.email=artemizgame@gmail.com"
       - "--certificatesresolvers.le.acme.storage=/data/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge=true"
