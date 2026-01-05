@@ -14,7 +14,7 @@ service:
       targetPort: 5672
       protocol: TCP
     - name: management
-      port: 15672
+      port: 80
       targetPort: 15672
       protocol: TCP
 
@@ -22,10 +22,10 @@ ingress:
   enabled: true
   className: traefik
   host: api.crewmates.fun
-  path: /
+  path: /rabbit
   pathType: Prefix
   tls: true
-  port: 15672
+  port: 80
 
 envFrom:
   - secretRef: rabbit-secrets
