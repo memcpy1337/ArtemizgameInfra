@@ -24,7 +24,7 @@ ingress:
   host: api.crewmates.fun
   path: /
   pathType: Prefix
-  tls: true
+  tls: false
   port: 15672
 
 envFrom:
