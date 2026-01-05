@@ -1,5 +1,5 @@
 apiVersion: v2
-name: prod-namespace
+name: test-namespace
 description: Test namespace
 type: application
 version: 0.1.0
