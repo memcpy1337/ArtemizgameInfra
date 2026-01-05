@@ -22,15 +22,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
-          {{- if .Values.envFrom.configMap }}
+          {{- if .Values.envFrom }}
           envFrom:
-            - configMapRef:
-                name: {{ .Values.envFrom.configMap }}
-          {{- end }}
-          {{- if .Values.envFrom.secret }}
-          envFrom:
+          {{- range .Values.envFrom }}
+            {{- if hasKey . "secretRef" }}
             - secretRef:
-                name: {{ .Values.envFrom.secret }}
+                name: {{ .secretRef | quote }}
+            {{- else if hasKey . "configMapRef" }}
+            - configMapRef:
+                name: {{ .configMapRef | quote }}
+            {{- end }}
+          {{- end }}
           {{- end }}
           env:
             {{- range $k, $v := .Values.env }}

@@ -18,6 +18,10 @@ ingress:
   pathType: Prefix
   tls: true
 
+envFrom:
+  - secretRef: jwt-secrets
+  - secretRef: common-secrets
+
 env:
   ASPNETCORE_ENVIRONMENT: "Production"
 
