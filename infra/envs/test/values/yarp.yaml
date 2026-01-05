@@ -21,6 +21,7 @@ ingress:
 envFrom:
   - secretRef: jwt-secrets
   - secretRef: common-secrets
+  - configMapRef: yarp-config
 
 env:
   ASPNETCORE_ENVIRONMENT: "Production"
