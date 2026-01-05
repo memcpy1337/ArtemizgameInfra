@@ -20,6 +20,7 @@ ingress:
   path: /
   pathType: Prefix
   tls: true
+  port: 80
 
 envFrom:
   - secretRef: jwt-secrets
