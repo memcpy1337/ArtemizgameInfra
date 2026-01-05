@@ -25,16 +25,12 @@ spec:
           {{- if .Values.envFrom }}
           envFrom:
           {{- range .Values.envFrom }}
-            {{- if kindIs "map" . }}
-              {{- if hasKey . "secretRef" }}
+            {{- if hasKey . "secretRef" }}
             - secretRef:
                 name: {{ .secretRef | quote }}
-              {{- else if hasKey . "configMapRef" }}
+            {{- else if hasKey . "configMapRef" }}
             - configMapRef:
                 name: {{ .configMapRef | quote }}
-              {{- end }}
-            {{- else }}
-              {{- fail (printf "envFrom items must be maps like {secretRef: name} or {configMapRef: name}, got: %s" (kindOf .)) }}
             {{- end }}
           {{- end }}
           {{- end }}

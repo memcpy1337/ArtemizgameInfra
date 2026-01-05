@@ -26,11 +26,6 @@ envFrom:
 env:
   ASPNETCORE_ENVIRONMENT: "Production"
 
-# если нужно подтягивать секреты как envFrom:
-envFrom:
-  configMap: ""   # например "users-config"
-  secret: ""      # например "users-secret"
-
 resources:
   requests:
     cpu: 100m
