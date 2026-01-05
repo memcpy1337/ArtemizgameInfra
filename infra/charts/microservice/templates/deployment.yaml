@@ -4,6 +4,7 @@ metadata:
   name: {{ include "microservice.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: {{ include "microservice.fullname" . }}
@@ -12,7 +13,6 @@ spec:
       labels:
         app: {{ include "microservice.fullname" . }}
     spec:
-      revisionHistoryLimit: 2
       {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml .Values.imagePullSecrets | nindent 8 }}
