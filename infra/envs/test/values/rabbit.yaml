@@ -19,7 +19,13 @@ service:
       protocol: TCP
 
 ingress:
-  enabled: false
+  enabled: true
+  className: traefik
+  host: api.crewmates.fun
+  path: /rabbit
+  pathType: Prefix
+  tls: true
+  port: 15672
 
 envFrom:
   - secretRef: rabbit-secrets
