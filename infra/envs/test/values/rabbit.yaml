@@ -1,0 +1,30 @@
+nameOverride: rabbit
+replicaCount: 1
+
+image:
+  repository: rabbitmq:management
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: amqp
+      port: 5672
+      targetPort: 5672
+    - name: management
+      port: 15672
+      targetPort: 15672
+
+ingress:
+  enabled: false
+
+envFrom:
+  - secretRef: rabbit-secrets
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
