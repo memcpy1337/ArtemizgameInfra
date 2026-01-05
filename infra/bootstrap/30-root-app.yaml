@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/memcpy1337/ArtemizgameInfra.git
     targetRevision: main
-    path: apps/prod
+    path: infra/apps/test
   syncPolicy:
     automated:
       prune: true
