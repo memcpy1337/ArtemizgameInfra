@@ -1,0 +1,39 @@
+nameOverride: yarp
+replicaCount: 1
+
+image:
+  repository: ghcr.io/memcpy1337/artemizgamegateway
+  digest: "sha256:6f9fd8e31f703bed8f101ae7d620f7739b858f1d7d250651fbfd0263e6358acf"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: true
+  className: traefik
+  host: api.crewmates.fun
+  path: /
+  pathType: Prefix
+  tls: true
+
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+
+# если нужно подтягивать секреты как envFrom:
+envFrom:
+  configMap: ""   # например "users-config"
+  secret: ""      # например "users-secret"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# если GHCR приватный:
+imagePullSecrets:
+  - name: ghcr-pull
