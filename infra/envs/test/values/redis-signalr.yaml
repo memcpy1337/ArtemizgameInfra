@@ -9,7 +9,7 @@ image:
 service:
   type: ClusterIP
   ports:
-    - name: TCP
+    - name: tcp
       port: 6379
       targetPort: 6379
       protocol: TCP
