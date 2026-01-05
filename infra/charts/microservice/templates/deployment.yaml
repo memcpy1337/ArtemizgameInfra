@@ -25,7 +25,7 @@ spec:
             {{- range .Values.service.ports }}
             - name: {{ .name }}
               containerPort: {{ .targetPort }}
-              protocol: TCP
+              protocol: {{ .protocol }}
             {{- end }}
           {{- if .Values.envFrom }}
           envFrom:
