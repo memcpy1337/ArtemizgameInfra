@@ -18,7 +18,7 @@ ingress:
   enabled: true
   className: traefik
   host: api.crewmates.fun
-  path: /fsdfsdf
+  path: /
   pathType: Prefix
   tls: true
   port: 80
