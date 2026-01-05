@@ -2,7 +2,8 @@ nameOverride: rabbit
 replicaCount: 1
 
 image:
-  repository: rabbitmq:management
+  repository: rabbitmq
+  tag: management
   pullPolicy: IfNotPresent
 
 service:
