@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/memcpy1337/artemizgamegateway
-  digest: "sha256:8f7639ed79aa28ec89b000f8e355c18d59f70772d61d0082d8ca2028ae5ca67a"
+  digest: "sha256:07f2560daae3e497026134ef13a40a8e14a03fb0bbb60b28fd5233c1c2c0c61c"
   pullPolicy: IfNotPresent
 
 service:
