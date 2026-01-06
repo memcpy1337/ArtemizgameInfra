@@ -1,0 +1,40 @@
+nameOverride: auth-service
+replicaCount: 1
+
+image:
+  repository: ghcr.io/memcpy1337/artemizgameauth
+  digest: "sha256:e09cb5f5749ef27042dea919920050994b53cf5f2b541d7b08f1bb6c721dc3c6"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6023
+      targetPort: 6023
+      protocol: TCP
+    - name: https
+      port: 6024
+      targetPort: 6024
+      protocol: TCP
+
+ingress:
+  enabled: false
+
+envFrom:
+  - secretRef: common-secrets
+  - secretRef: auth-database-secret
+
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:6023"
+  ASPNETCORE_HTTP_PORTS: "6023"
+  ASPNETCORE_HTTPS_PORTS: "6024"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
