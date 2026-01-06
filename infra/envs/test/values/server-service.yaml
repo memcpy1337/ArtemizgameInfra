@@ -1,0 +1,36 @@
+nameOverride: server-service
+replicaCount: 1
+
+image:
+  repository: ghcr.io/memcpy1337/artemizgameserver
+  digest: "sha256:8dca9f81262ae6711e584ac914361ae97c3e5b3b1270296a2ea0ca528b72e361"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6002
+      targetPort: 6002
+      protocol: TCP
+
+ingress:
+  enabled: false
+
+envFrom:
+  - secretRef: common-secrets
+  - secretRef: edgegap-secret
+  - secretRef: server-database-secret
+
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:6002"
+  ASPNETCORE_HTTP_PORTS: "6002"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

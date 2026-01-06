@@ -1,0 +1,41 @@
+nameOverride: matchmaking-service
+replicaCount: 1
+
+image:
+  repository: ghcr.io/memcpy1337/artemizgamematchmaker
+  digest: "sha256:b4d816ed2b1a6622120d656b73fb39458729b80e56fe4d62024c92323f7a9fac"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6071
+      targetPort: 6071
+      protocol: TCP
+    - name: https
+      port: 6072
+      targetPort: 6072
+      protocol: TCP
+
+ingress:
+  enabled: false
+
+envFrom:
+  - secretRef: common-secrets
+  - secretRef: matchmaking-redis-secret
+  - secretRef: matchmaking-database-secret
+
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:6071"
+  ASPNETCORE_HTTP_PORTS: "6071"
+  ASPNETCORE_HTTPS_PORTS: "6072"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
