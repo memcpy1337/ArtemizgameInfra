@@ -23,6 +23,7 @@ ingress:
 
 envFrom:
   - secretRef: common-secrets
+  - secretRef: user-database-secret
 
 env:
   ASPNETCORE_ENVIRONMENT: "Production"
