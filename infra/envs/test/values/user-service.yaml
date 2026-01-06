@@ -1,0 +1,39 @@
+nameOverride: user-service
+replicaCount: 1
+
+image:
+  repository: ghcr.io/memcpy1337/artemizgameuser
+  digest: "sha256:74d1dd906316f194c4db0c9dcc007ed54b0f5c025884443f0ffedcdaa5f3c7b1"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6033
+      targetPort: 6033
+      protocol: TCP
+    - name: https
+      port: 6034
+      targetPort: 6034
+      protocol: TCP
+
+ingress:
+  enabled: false
+
+envFrom:
+  - secretRef: common-secrets
+
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:6033"
+  ASPNETCORE_HTTP_PORTS: "6033"
+  ASPNETCORE_HTTPS_PORTS: "6034"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
