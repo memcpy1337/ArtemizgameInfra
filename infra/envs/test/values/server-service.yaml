@@ -20,6 +20,7 @@ ingress:
 envFrom:
   - secretRef: common-secrets
   - secretRef: edgegap-secret
+  - secretRef: continious-monitoring-secrets
   - secretRef: server-database-secret
 
 env:
