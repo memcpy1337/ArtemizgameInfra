@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/memcpy1337/artemizgamematchmaker
-  digest: "sha256:9a2e5afb3a63c9d93050dec7ab2c62adafb79120d9549ef69c6956b76bc69638"
+  digest: "sha256:d10982fef7dc600f460cf848470640eecf5be1d1d984cf01f5f769d0199c190f"
   pullPolicy: IfNotPresent
 
 service:
